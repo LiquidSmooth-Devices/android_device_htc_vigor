@@ -25,35 +25,65 @@
 #include <fcntl.h>
 #include <pthread.h>
 
-
 #include <sys/ioctl.h>
 #include <sys/types.h>
 
 #include <hardware/lights.h>
+
+#ifndef LIGHT_ID_CAPS
+#define LIGHT_ID_CAPS "caps"
+#endif
+#ifndef LIGHT_ID_FUNC
+#define LIGHT_ID_FUNC "func"
+#endif
 
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 static struct light_state_t g_notification;
 static struct light_state_t g_battery;
 static int g_backlight = 255;
+static int g_buttons = 0;
+static int g_attention = 0;
+static int g_haveAmberLed = 0;
+static int g_wimax = 0;
+static int g_caps = 0;
+static int g_func = 0;
 
-char const*const AMBER_LED_FILE = "/sys/class/leds/amber/brightness";
 char const*const GREEN_LED_FILE = "/sys/class/leds/green/brightness";
-char const*const BLUE_LED_FILE = "/sys/class/leds/blue/brightness";
-
+char const*const AMBER_LED_FILE = "/sys/class/leds/amber/brightness";
 char const*const BUTTON_FILE = "/sys/class/leds/button-backlight/brightness";
-
 char const*const AMBER_BLINK_FILE = "/sys/class/leds/amber/blink";
 char const*const GREEN_BLINK_FILE = "/sys/class/leds/green/blink";
-
+char const*const KEYBOARD_FILE = "/sys/class/leds/keyboard-backlight/brightness";
+char const*const CAPS_LED_FILE = "/sys/class/leds/caps/brightness";
+char const*const FUNC_LED_FILE = "/sys/class/leds/func/brightness";
 char const*const LCD_BACKLIGHT_FILE = "/sys/class/leds/lcd-backlight/brightness";
 
 enum {
 	LED_AMBER,
 	LED_GREEN,
-	LED_BLUE,
 	LED_BLANK,
 };
+
+enum {
+  PULSE_LENGTH_VERY_SHORT = 250,
+  PULSE_LENGTH_SHORT = 500,
+  PULSE_LENGTH_NORMAL = 1000,
+  PULSE_LENGTH_LONG = 2500,
+  PULSE_LENGTH_VERY_LONG = 5000,
+  PULSE_LENGTH_ALWAYS_ON = 1,
+};
+
+enum {
+  BLINK_MODE_OFF = 0,
+  BLINK_MODE_VERY_SHORT = 250,
+  BLINK_MODE_SHORT = 500,
+  BLINK_MODE_NORMAL =  1000,
+  BLINK_MODE_LONG = 2500,
+  BLINK_MODE_VERY_LONG = 5000,
+};
+
+
 
 /**
  * Aux method, write int to file
@@ -92,9 +122,8 @@ static int is_lit (struct light_state_t const* state) {
 static void set_speaker_light_locked (struct light_device_t *dev, struct light_state_t *state) {
 	unsigned int colorRGB = state->color & 0xFFFFFF;
 	unsigned int color = LED_BLANK;
+	unsigned int blinkMode = BLINK_MODE_OFF;
 
-	if (colorRGB & 0xFF)
-		color = LED_BLUE;
 	if ((colorRGB >> 8)&0xFF)
 		color = LED_GREEN;
 	if ((colorRGB >> 16)&0xFF)
@@ -102,30 +131,40 @@ static void set_speaker_light_locked (struct light_device_t *dev, struct light_s
 
 	int amber = (colorRGB >> 16)&0xFF;
 	int green = (colorRGB >> 8)&0xFF;
-	int blue = (colorRGB)&0xFF;
+
+	if(state->flashOnMS >= PULSE_LENGTH_LONG) // || state->flashOffMS >= BLINK_MODE_LONG)
+	{
+		blinkMode = BLINK_MODE_LONG;
+	}
+
+	if(state->flashOnMS == PULSE_LENGTH_ALWAYS_ON) {
+		state->flashMode = LIGHT_FLASH_NONE;
+	}
+
 
 	switch (state->flashMode) {
 		case LIGHT_FLASH_TIMED:
 			switch (color) {
 				case LED_AMBER:
-					write_int (AMBER_BLINK_FILE, 4);
+					if(blinkMode == BLINK_MODE_LONG) {
+						write_int (AMBER_BLINK_FILE, 4);
+					} else {
+						write_int (AMBER_BLINK_FILE, 1);
+					}
 					write_int (GREEN_LED_FILE, 0);
-					write_int (BLUE_LED_FILE, 0);
 					break;
 				case LED_GREEN:
-					write_int (GREEN_BLINK_FILE, 1);
+					if(blinkMode == BLINK_MODE_LONG) {
+						// green cant blink long (writing 1 instead of 4)
+						write_int (GREEN_BLINK_FILE, 1);
+					} else {
+						write_int (GREEN_BLINK_FILE, 1);
+					}
 					write_int (AMBER_LED_FILE, 0);
-					write_int (BLUE_LED_FILE, 0);
-					break;
-				case LED_BLUE:
-					write_int (BLUE_LED_FILE, 1);
-					write_int (AMBER_LED_FILE, 0);
-					write_int (GREEN_LED_FILE, 0);
 					break;
 				case LED_BLANK:
 					write_int (AMBER_BLINK_FILE, 0);
 					write_int (GREEN_BLINK_FILE, 0);
-					write_int (BLUE_LED_FILE, 0);
 					break;
 				default:
 					ALOGE("set_led_state colorRGB=%08X, unknown color\n",
@@ -138,22 +177,14 @@ static void set_speaker_light_locked (struct light_device_t *dev, struct light_s
 				case LED_AMBER:
 					write_int (AMBER_LED_FILE, 1);
 					write_int (GREEN_LED_FILE, 0);
-					write_int (BLUE_LED_FILE, 0);
 					break;
 				case LED_GREEN:
 					write_int (AMBER_LED_FILE, 0);
 					write_int (GREEN_LED_FILE, 1);
-					write_int (BLUE_LED_FILE, 0);
-					break;
-				case LED_BLUE:
-					write_int (AMBER_LED_FILE, 0);
-					write_int (GREEN_LED_FILE, 0);
-					write_int (BLUE_LED_FILE, 1);
 					break;
 				case LED_BLANK:
 					write_int (AMBER_LED_FILE, 0);
 					write_int (GREEN_LED_FILE, 0);
-					write_int (BLUE_LED_FILE, 0);
 					break;
 
 			}
@@ -167,23 +198,8 @@ static void set_speaker_light_locked (struct light_device_t *dev, struct light_s
 
 static void set_speaker_light_locked_dual (struct light_device_t *dev, struct light_state_t *bstate, struct light_state_t *nstate) {
 
-	unsigned int bcolorRGB = bstate->color & 0xFFFFFF;
-	unsigned int bcolor = LED_BLANK;
-
-	if ((bcolorRGB >> 8)&0xFF) bcolor = LED_GREEN;
-	if ((bcolorRGB >> 16)&0xFF) bcolor = LED_AMBER;
-
-	if (bcolor == LED_AMBER) {
-		write_int (GREEN_LED_FILE, 1);
-		write_int (AMBER_BLINK_FILE, 4);
-		write_int (BLUE_LED_FILE, 0);
-	} else if (bcolor == LED_GREEN) {
-		write_int (GREEN_LED_FILE, 1);
-		write_int (AMBER_BLINK_FILE, 1);
-		write_int (BLUE_LED_FILE, 0);
-	} else {
-		ALOGE("set_led_state (dual) unexpected color: bcolorRGB=%08x\n", bcolorRGB);
-	}
+	write_int (GREEN_BLINK_FILE, 3);
+	write_int (AMBER_BLINK_FILE, 1);
 
 }
 
@@ -206,6 +222,41 @@ static int set_light_buttons (struct light_device_t* dev,
 	err = write_int (BUTTON_FILE, on?255:0);
 	pthread_mutex_unlock (&g_lock);
 
+	return 0;
+}
+
+static int set_light_keyboard(struct light_device_t* dev,
+		struct light_state_t const* state) {
+	int err = 0;
+	int on = is_lit(state);
+	pthread_mutex_lock(&g_lock);
+	err = write_int(KEYBOARD_FILE, on?255:0);
+	pthread_mutex_unlock(&g_lock);
+	
+	return 0;
+}
+
+static int set_light_caps(struct light_device_t* dev,
+		struct light_state_t const* state) {
+	int err = 0;
+	int on = is_lit(state);
+	pthread_mutex_lock(&g_lock);
+	g_caps = on;
+	err = write_int(CAPS_LED_FILE, on?255:0);
+	pthread_mutex_unlock(&g_lock);
+
+	return 0;
+}
+
+static int set_light_func(struct light_device_t* dev,
+		struct light_state_t const* state) {
+	int err = 0;
+	int on = is_lit(state);
+	pthread_mutex_lock(&g_lock);
+	g_func = on;
+	err = write_int(FUNC_LED_FILE, on?255:0);
+	pthread_mutex_unlock(&g_lock);
+	
 	return 0;
 }
 
@@ -283,6 +334,15 @@ static int open_lights (const struct hw_module_t* module, char const* name,
 	else if (0 == strcmp(LIGHT_ID_NOTIFICATIONS, name))  {
 		set_light = set_light_notifications;
 	}
+    else if (0 == strcmp(LIGHT_ID_KEYBOARD, name)) {
+        set_light = set_light_keyboard;
+    }
+    else if (0 == strcmp(LIGHT_ID_CAPS, name)) {
+        set_light = set_light_caps;
+    }
+    else if (0 == strcmp(LIGHT_ID_FUNC, name)) {
+        set_light = set_light_func;
+    }
 	else {
 		return -EINVAL;
 	}
