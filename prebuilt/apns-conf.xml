@@ -107,6 +107,20 @@
   <apn carrier="T-Mobile Internet" mcc="262" mnc="06" apn="internet.t-mobile" user="t-mobile" password="tm" mmsc="http://mms.t-mobile.de/servlets/mms" mmsproxy="172.28.23.131" mmsport="8008" type="default,supl,mms" />
   <apn carrier="T-Mobile AT" mcc="232" mnc="03" apn="gprsinternet" user="t-mobile" password="tm" server="*" mmsc="http://mmsc.t-mobile.at/servlets/mms" mmsproxy="010.012.000.020" mmsport="80" type="default,supl" />
   <apn carrier="T-Mobile AT-MMS" mcc="232" mnc="03" apn="gprsmms" user="t-mobile" password="tm" server="*" mmsc="http://mmsc.t-mobile.at/servlets/mms" mmsproxy="010.012.000.020" mmsport="80" type="mms" />
+  <apn carrier="IDEA" mcc="404" mnc="04" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="404" mnc="04" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="404" mnc="12" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="404" mnc="12" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="404" mnc="14" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="404" mnc="14" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="404" mnc="19" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="404" mnc="19" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="404" mnc="22" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="404" mnc="22" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="404" mnc="24" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="404" mnc="24" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="404" mnc="07" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="404" mnc="07" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
   <apn carrier="IDEA" mcc="405" mnc="845" apn="internet" type="default,supl" />
   <apn carrier="IDEA MMS" mcc="405" mnc="845" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
   <apn carrier="IDEA" mcc="405" mnc="846" apn="internet" type="default,supl" />
