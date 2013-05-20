@@ -107,4 +107,71 @@
   <apn carrier="T-Mobile Internet" mcc="262" mnc="06" apn="internet.t-mobile" user="t-mobile" password="tm" mmsc="http://mms.t-mobile.de/servlets/mms" mmsproxy="172.28.23.131" mmsport="8008" type="default,supl,mms" />
   <apn carrier="T-Mobile AT" mcc="232" mnc="03" apn="gprsinternet" user="t-mobile" password="tm" server="*" mmsc="http://mmsc.t-mobile.at/servlets/mms" mmsproxy="010.012.000.020" mmsport="80" type="default,supl" />
   <apn carrier="T-Mobile AT-MMS" mcc="232" mnc="03" apn="gprsmms" user="t-mobile" password="tm" server="*" mmsc="http://mmsc.t-mobile.at/servlets/mms" mmsproxy="010.012.000.020" mmsport="80" type="mms" />
+  <apn carrier="IDEA" mcc="405" mnc="845" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="405" mnc="845" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="405" mnc="846" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="405" mnc="846" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="405" mnc="847" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="405" mnc="847" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="405" mnc="848" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="405" mnc="848" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="405" mnc="849" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="405" mnc="849" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="405" mnc="850" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="405" mnc="850" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="405" mnc="851" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="405" mnc="851" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="405" mnc="852" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="405" mnc="852" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="IDEA" mcc="405" mnc="853" apn="internet" type="default,supl" />
+  <apn carrier="IDEA MMS" mcc="405" mnc="853" apn="mmsc" mmsc="http://10.4.42.21:8002/" mmsproxy="10.4.42.15" mmsport="8080" type="mms" />
+  <apn carrier="SPICE" mcc="405" mnc="908" apn="spicegprs" type="default,supl" />
+  <apn carrier="IDEAS" mcc="525" mnc="01" apn="e-ideas" type="default,supl,mms" />
+  <apn carrier="IDEAS MMS" mcc="525" mnc="01" apn="e-ideas" user="65IDEAS" password="65ideas" mmsc="http://mms.singtel.com:10021/mmsc" mmsproxy="165.21.42.84" mmsport="8080" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="025" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="025" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="026" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="026" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="027" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="027" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="029" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="029" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="030" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="030" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="031" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="031" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="032" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="032" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="033" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="033" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="034" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="034" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="035" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="035" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="036" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="036" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="037" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="037" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="038" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="038" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="039" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="039" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="Reliance MMS" mcc="405" mnc="03" apn="rcommms" mmsc="http://mms.rcom.co.in:6081/mms" mmsproxy="10.239.221.5" mmsport="8080" type="mms" />
+  <apn carrier="Reliance" mcc="405" mnc="03" apn="rcomnet" type="default,supl" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="040" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="040" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="041" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="041" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="042" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="042" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="043" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="043" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="044" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="044" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="045" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="045" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="046" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="046" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
+  <apn carrier="TA TA DoCoMo" mcc="405" mnc="047" apn="TATA.DOCOMO.INTERNET" type="default,supl" />
+  <apn carrier="TA TA DoCoMo MMS" mcc="405" mnc="047" apn="TATA.DOCOMO.MMS" mmsc="http://mmsc/" mmsproxy="10.124.26.94" mmsport="8799" type="mms" />
 </apns>
