@@ -25,7 +25,6 @@ PRODUCT_COPY_FILES += device/htc/vigor/prebuilt/apns-conf.xml:system/etc/apns-co
 
 ## recovery and custom charging
 PRODUCT_COPY_FILES += \
-    device/htc/vigor/ramdisk/fstab.qcom:recovery/root/fstab.qcom \
     device/htc/vigor/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
     device/htc/vigor/recovery/sbin/power_test:recovery/root/sbin/power_test \
     device/htc/vigor/recovery/sbin/offmode_charging:recovery/root/sbin/offmode_charging \
@@ -34,7 +33,7 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    device/htc/vigor/ramdisk/fstab.qcom:root/fstab.qcom \
+    device/htc/vigor/ramdisk/fstab.vigor:root/fstab.vigor \
     device/htc/vigor/ramdisk/init.vigor.rc:root/init.vigor.rc \
     device/htc/vigor/ramdisk/ueventd.vigor.rc:root/ueventd.vigor.rc \
     device/htc/vigor/ramdisk/init.vigor.usb.rc:root/init.vigor.usb.rc
