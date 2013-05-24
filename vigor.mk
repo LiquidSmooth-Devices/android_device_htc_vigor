@@ -60,9 +60,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
 
-# Misc
-PRODUCT_PACKAGES += gps.vigor Stk FileManager
-
 # Audio/Video codecs
 PRODUCT_COPY_FILES += \
     device/htc/msm8660-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
@@ -71,9 +68,14 @@ PRODUCT_COPY_FILES += \
 # HTC BT Audio tune
 PRODUCT_COPY_FILES += device/htc/vigor/dsp/AudioBTID.csv:system/etc/AudioBTID.csv
 
+# Misc
 PRODUCT_PACKAGES += \
     hcitool \
     hciconfig \
+    gps.vigor \
+    lights.vigor \
+    Stk \
+    FileManager
 
 ## cm dsp manager
 PRODUCT_PACKAGES += \
