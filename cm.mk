@@ -16,3 +16,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=htc_vigor BUILD_ID=IML74K BUILD_FIN
 # Release name
 PRODUCT_RELEASE_NAME := Vigor
 -include vendor/cm/config/common_versions.mk
+
+ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
+ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
