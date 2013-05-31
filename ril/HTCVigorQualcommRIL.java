@@ -41,7 +41,7 @@ import java.util.ArrayList;
  *
  * {@hide}
  */
-public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsInterface {
+public class HTCVigorQualcommRIL extends RIL implements CommandsInterface {
 
     private static final int RIL_UNSOL_ENTER_LPM = 3023;
     private static final int RIL_UNSOL_TPMR_ID = 3024;
@@ -59,72 +59,16 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
     @Override
     protected Object
     responseIccCardStatus(Parcel p) {
-        IccCardApplicationStatus appStatus;
+        Object ret = super.responseIccCardStatus(p);
 
-        // use old needsOldRilFeature method for feature. it would be redundant to make
-        // a new method just for naming sake.
-        boolean oldRil = needsOldRilFeature("icccardstatus");
+        // force CDMA + LTE network mode
+        boolean forceCdmaLte = needsOldRilFeature("forceCdmaLteNetworkType");
 
-        // force CDMA + LTE network type
-        boolean forceCdmaLteNetworkType = needsOldRilFeature("forceCdmaLteNetworkType");
-
-        IccCardStatus cardStatus = new IccCardStatus();
-        cardStatus.setCardState(p.readInt());
-        cardStatus.setUniversalPinState(p.readInt());
-        cardStatus.mGsmUmtsSubscriptionAppIndex = p.readInt();
-        cardStatus.mCdmaSubscriptionAppIndex = p.readInt();
-
-        if (!oldRil)
-            cardStatus.mImsSubscriptionAppIndex = p.readInt();
-
-        int numApplications = p.readInt();
-
-        // limit to maximum allowed applications
-        if (numApplications > IccCardStatus.CARD_MAX_APPS) {
-            numApplications = IccCardStatus.CARD_MAX_APPS;
-        }
-        cardStatus.mApplications = new IccCardApplicationStatus[numApplications];
-
-        for (int i = 0 ; i < numApplications ; i++) {
-            appStatus = new IccCardApplicationStatus();
-            appStatus.app_type       = appStatus.AppTypeFromRILInt(p.readInt());
-            appStatus.app_state      = appStatus.AppStateFromRILInt(p.readInt());
-            appStatus.perso_substate = appStatus.PersoSubstateFromRILInt(p.readInt());
-            if ((appStatus.app_state == IccCardApplicationStatus.AppState.APPSTATE_SUBSCRIPTION_PERSO) &&
-                ((appStatus.perso_substate == IccCardApplicationStatus.PersoSubState.PERSOSUBSTATE_READY) ||
-                (appStatus.perso_substate == IccCardApplicationStatus.PersoSubState.PERSOSUBSTATE_UNKNOWN))) {
-                // ridiculous HTC hack
-                appStatus.app_state = IccCardApplicationStatus.AppState.APPSTATE_UNKNOWN;
-                Log.d(LOG_TAG, "ca.app_state == AppState.APPSTATE_SUBSCRIPTION_PERSO");
-                Log.d(LOG_TAG, "ca.perso_substate == PersoSubState.PERSOSUBSTATE_READY");
-            }
-            appStatus.aid            = p.readString();
-            appStatus.app_label      = p.readString();
-            appStatus.pin1_replaced  = p.readInt();
-            appStatus.pin1           = appStatus.PinStateFromRILInt(p.readInt());
-            appStatus.pin2           = appStatus.PinStateFromRILInt(p.readInt());
-            cardStatus.mApplications[i] = appStatus;
+        if (forceCdmaLte) {
+            setPreferredNetworkType(NETWORK_MODE_LTE_CDMA_EVDO, null);
         }
 
-        // pretty hack way to do it. but keeps it out of CM telephony stack
-        if (forceCdmaLteNetworkType)
-            setPreferredNetworkType(8, null);
-
-        return cardStatus;
-    }
-
-    @Override
-    public void setPreferredNetworkType(int networkType , Message response) {
-        /**
-          * If not using a USIM, ignore LTE mode and go to 3G
-          */
-        if (!mUSIM && networkType == RILConstants.NETWORK_MODE_LTE_GSM_WCDMA &&
-                 mSetPreferredNetworkType >= RILConstants.NETWORK_MODE_WCDMA_PREF) {
-            networkType = RILConstants.NETWORK_MODE_WCDMA_PREF;
-        }
-        mSetPreferredNetworkType = networkType;
-
-        super.setPreferredNetworkType(networkType, response);
+        return ret;
     }
 
     @Override
@@ -147,6 +91,8 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
          * 13: LTE_SignalStrength.cqi
          */
 
+        int parcelSize = p.dataSize();
+
         int gsmSignalStrength = p.readInt();
         int gsmBitErrorRate = p.readInt();
         int cdmaDbm = p.readInt();
@@ -154,8 +100,11 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
         int evdoDbm = p.readInt();
         int evdoEcio = p.readInt();
         int evdoSnr = p.readInt();
-        p.readInt(); // ATT_SignalStrength.dbm
-        p.readInt(); // ATT_SignalStrength.ecno
+        if (parcelSize >= 14) {
+            /* Signal strength parcel contains HTC ATT signal strength */
+            p.readInt(); // ATT_SignalStrength.dbm
+            p.readInt(); // ATT_SignalStrength.ecno
+        }
         int lteSignalStrength = p.readInt();
         int lteRsrp = p.readInt();
         int lteRsrq = p.readInt();
@@ -186,6 +135,7 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
             case RIL_UNSOL_RESPONSE_VOICE_RADIO_TECH_CHANGED: ret = responseVoid(p); break;
             case RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED: ret = responseVoid(p); break;
             case RIL_UNSOL_RESPONSE_DATA_NETWORK_STATE_CHANGED: ret = responseVoid(p); break;
+            case RIL_UNSOL_RIL_CONNECTED: ret = responseInts(p); break;
 
             default:
                 // Rewind the Parcel
@@ -212,7 +162,33 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
                                         new AsyncResult (null, null, null));
                 }
                 break;
+            case RIL_UNSOL_RIL_CONNECTED: {
+                if (RILJ_LOGD) unsljLogRet(response, ret);
+
+                boolean skipRadioPowerOff = needsOldRilFeature("skipradiooff");
+
+                // Initial conditions
+                if (!skipRadioPowerOff) {
+                    setRadioPower(false, null);
+                }
+                setPreferredNetworkType(mPreferredNetworkType, null);
+                setCdmaSubscriptionSource(mCdmaSubscription, null);
+                notifyRegistrantsRilConnectionChanged(((int[])ret)[0]);
+                break;
+            }
         }
     }
 
+    /**
+     * Notify all registrants that the ril has connected or disconnected.
+     *
+     * @param rilVer is the version of the ril or -1 if disconnected.
+     */
+    private void notifyRegistrantsRilConnectionChanged(int rilVer) {
+        mRilVersion = rilVer;
+        if (mRilConnectedRegistrants != null) {
+            mRilConnectedRegistrants.notifyRegistrants(
+                                new AsyncResult (null, new Integer(rilVer), null));
+        }
+    }
 }
