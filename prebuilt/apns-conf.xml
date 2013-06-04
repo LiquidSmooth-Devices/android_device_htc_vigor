@@ -203,4 +203,5 @@
   <apn carrier="OLA MMS" mcc="732" mnc="111" apn="mms.comcel.com.co" mmsc="http://mms.ola.com.co" mmsproxy="200.058.228.081" mmsport="9201" type="mms" />
   <apn carrier="Movistar CO" mcc="732" mnc="123" apn="internet.movistar.com.co" user="movistar" password="movistar" type="default,supl" />
   <!-- APN'S COLOMBIA END -->
+  <apn carrier="Bell" mcc="302" mnc="610" apn="pda.bell.ca" proxy="web.wireless.bell.ca" port="80" mmsc="http://mms.bell.ca/mms/wapenc" mmsproxy="web.wireless.bell.ca" mmsport="80" type="" />
 </apns>
