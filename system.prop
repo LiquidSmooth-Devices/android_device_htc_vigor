@@ -74,7 +74,7 @@ gsm.operator.alpha = Verizon
 gsm.operator.numeric = 310012
 gsm.operator.iso-country = us
 ro.cdma.home.operator.alpha = Verizon
-ro.cdma.home.operator.numeric = 310012
+ro.cdma.home.operator.numeric = 311480
 
 # Device needs to get CDMA subscription when RUIM is ready
 ro.cdma.subscribe_on_ruim_ready = true
