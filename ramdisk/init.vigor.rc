@@ -263,6 +263,7 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     class main
     user root
     disabled
+    oneshot
 
 #service qcom-sh /system/bin/sh /init.qcom.sh
 #    class core
