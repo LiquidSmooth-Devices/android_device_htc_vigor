@@ -138,6 +138,9 @@ on boot
     wait /dev/ttyHSL1
     mkdir /data/qcks 0770 system system
 
+    # Vibrator
+    chown system system /sys/class/timed_output/vibrator/voltage_level
+
     # wifi
     mkdir /data/misc 1771 system misc
     mkdir /data/misc/wifi 0770 wifi wifi
