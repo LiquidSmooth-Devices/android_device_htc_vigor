@@ -79,6 +79,9 @@ on init
 
     symlink /mnt/sdcard/ext_sd /sdcard2
 
+    # Vibrator
+    chown system system /sys/class/timed_output/vibrator/voltage_level
+
 on emmc-fs
     # mount all mmc partitions
     mount_all /fstab.vigor
@@ -137,9 +140,6 @@ on boot
 
     wait /dev/ttyHSL1
     mkdir /data/qcks 0770 system system
-
-    # Vibrator
-    chown system system /sys/class/timed_output/vibrator/voltage_level
 
     # wifi
     mkdir /data/misc 1771 system misc
