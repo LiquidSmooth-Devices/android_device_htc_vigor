@@ -44,6 +44,7 @@ TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
 # RIL
+BOARD_USE_NEW_LIBRIL_HTC := true
 BOARD_RIL_CLASS := "../../../device/htc/vigor/ril/"
 
 # HTCLOG
