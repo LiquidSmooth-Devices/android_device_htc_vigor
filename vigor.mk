@@ -36,7 +36,8 @@ PRODUCT_PACKAGES += \
     fstab.vigor \
     init.vigor.rc \
     init.vigor.usb.rc \
-    ueventd.vigor.rc
+    ueventd.vigor.rc \
+    remount.vigor
 
 # Hostapd
 PRODUCT_COPY_FILES += \

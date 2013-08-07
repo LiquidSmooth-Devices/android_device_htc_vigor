@@ -94,6 +94,9 @@ on emmc-fs
 
     symlink /system/vendor/lib /vendor/lib
 
+    # mount system as ro
+    mount_all /remount.vigor
+
 on post-fs-data
     # double check the perms and set owner
     chown root root /devlog
