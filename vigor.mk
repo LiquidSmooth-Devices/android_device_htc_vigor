@@ -23,20 +23,20 @@ PRODUCT_COPY_FILES := device/common/gps/gps.conf_US_SUPL:system/etc/gps.conf
 # CDMA/GSM Combined APNs list
 PRODUCT_COPY_FILES += device/htc/vigor/prebuilt/apns-conf.xml:system/etc/apns-conf.xml
 
-## recovery and custom charging
-PRODUCT_COPY_FILES += \
-    device/htc/vigor/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
-    device/htc/vigor/recovery/sbin/power_test:recovery/root/sbin/power_test \
-    device/htc/vigor/recovery/sbin/offmode_charging:recovery/root/sbin/offmode_charging \
-    device/htc/vigor/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
-    device/htc/vigor/recovery/sbin/htcbatt:recovery/root/sbin/htcbatt
+# Recovery
+PRODUCT_PACKAGES += \
+    init.recovery.vigor.rc \
+    choice_fn \
+    detect_key \
+    offmode_charging \
+    power_test
 
 # Ramdisk
-PRODUCT_COPY_FILES += \
-    device/htc/vigor/ramdisk/fstab.vigor:root/fstab.vigor \
-    device/htc/vigor/ramdisk/init.vigor.rc:root/init.vigor.rc \
-    device/htc/vigor/ramdisk/ueventd.vigor.rc:root/ueventd.vigor.rc \
-    device/htc/vigor/ramdisk/init.vigor.usb.rc:root/init.vigor.usb.rc
+PRODUCT_PACKAGES += \
+    fstab.vigor \
+    init.vigor.rc \
+    init.vigor.usb.rc \
+    ueventd.vigor.rc
 
 # Hostapd
 PRODUCT_COPY_FILES += \

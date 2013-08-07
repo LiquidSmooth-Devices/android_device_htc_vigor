@@ -15,10 +15,7 @@
 ######################
 
 # internal sdcard
-dev_mount emmc /storage/sdcard1 38 /devices/platform/msm_sdcc.1/mmc_host/mmc0 nonremovable,encryptable
+dev_mount sdcard /storage/sdcard0 38 /devices/platform/msm_sdcc.1/mmc_host/mmc0 nonremovable,encryptable
 
 # external sdcard
-dev_mount sdcard /storage/sdcard0 auto /devices/platform/msm_sdcc.3/mmc_host/mmc2
-
-# otg usbdisk
-dev_mount usbdisk /storage/usbdisk0 auto /devices/platform/msm_hsusb_host.0/usb1 
+dev_mount external_sd /storage/sdcard1 auto /devices/platform/msm_sdcc.3/mmc_host/mmc2
