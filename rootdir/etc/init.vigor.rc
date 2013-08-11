@@ -122,6 +122,9 @@ on boot
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
+    # 4.3 requires this
+    chmod 0644 /proc/cmdline
+
     # bluetooth power up/down interface
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state

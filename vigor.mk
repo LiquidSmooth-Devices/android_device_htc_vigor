@@ -44,9 +44,6 @@ PRODUCT_COPY_FILES += \
     device/htc/vigor/prebuilt/bin/hostapd:system/bin/hostapd \
     device/htc/vigor/prebuilt/bin/hostapd_cli:system/bin/hostapd_cli
 
-# Vold
-PRODUCT_COPY_FILES += device/htc/vigor/configs/vold.fstab:system/etc/vold.fstab
-
 # Misc
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.clientidbase=android-verizon \
@@ -76,8 +73,7 @@ PRODUCT_PACKAGES += \
     gps.vigor \
     lights.vigor \
     Stk \
-    FileManager \
-    DeviceSettings
+    FileManager
 
 ## cm dsp manager
 PRODUCT_PACKAGES += \

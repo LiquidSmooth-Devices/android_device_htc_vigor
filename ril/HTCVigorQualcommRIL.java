@@ -24,12 +24,13 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Parcel;
-import android.telephony.SignalStrength;
 import android.text.TextUtils;
+import android.telephony.CellInfo;
+import android.telephony.SignalStrength;
 import android.util.Log;
 
-import com.android.internal.telephony.IccCardApplicationStatus;
-import com.android.internal.telephony.IccCardStatus;
+import com.android.internal.telephony.uicc.IccCardApplicationStatus;
+import com.android.internal.telephony.uicc.IccCardStatus;
 
 import java.util.ArrayList;
 
@@ -54,63 +55,6 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
 
     public HTCVigorQualcommRIL(Context context, int networkMode, int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription);
-    }
-
-    @Override
-    protected Object
-    responseIccCardStatus(Parcel p) {
-        IccCardApplicationStatus appStatus;
-
-        // use old needsOldRilFeature method for feature. it would be redundant to make
-        // a new method just for naming sake.
-        boolean oldRil = needsOldRilFeature("icccardstatus");
-
-        // force CDMA + LTE network type
-        boolean forceCdmaLteNetworkType = needsOldRilFeature("forceCdmaLteNetworkType");
-
-        IccCardStatus cardStatus = new IccCardStatus();
-        cardStatus.setCardState(p.readInt());
-        cardStatus.setUniversalPinState(p.readInt());
-        cardStatus.mGsmUmtsSubscriptionAppIndex = p.readInt();
-        cardStatus.mCdmaSubscriptionAppIndex = p.readInt();
-
-        if (!oldRil)
-            cardStatus.mImsSubscriptionAppIndex = p.readInt();
-
-        int numApplications = p.readInt();
-
-        // limit to maximum allowed applications
-        if (numApplications > IccCardStatus.CARD_MAX_APPS) {
-            numApplications = IccCardStatus.CARD_MAX_APPS;
-        }
-        cardStatus.mApplications = new IccCardApplicationStatus[numApplications];
-
-        for (int i = 0 ; i < numApplications ; i++) {
-            appStatus = new IccCardApplicationStatus();
-            appStatus.app_type       = appStatus.AppTypeFromRILInt(p.readInt());
-            appStatus.app_state      = appStatus.AppStateFromRILInt(p.readInt());
-            appStatus.perso_substate = appStatus.PersoSubstateFromRILInt(p.readInt());
-            if ((appStatus.app_state == IccCardApplicationStatus.AppState.APPSTATE_SUBSCRIPTION_PERSO) &&
-                ((appStatus.perso_substate == IccCardApplicationStatus.PersoSubState.PERSOSUBSTATE_READY) ||
-                (appStatus.perso_substate == IccCardApplicationStatus.PersoSubState.PERSOSUBSTATE_UNKNOWN))) {
-                // ridiculous HTC hack
-                appStatus.app_state = IccCardApplicationStatus.AppState.APPSTATE_UNKNOWN;
-                Log.d(LOG_TAG, "ca.app_state == AppState.APPSTATE_SUBSCRIPTION_PERSO");
-                Log.d(LOG_TAG, "ca.perso_substate == PersoSubState.PERSOSUBSTATE_READY");
-            }
-            appStatus.aid            = p.readString();
-            appStatus.app_label      = p.readString();
-            appStatus.pin1_replaced  = p.readInt();
-            appStatus.pin1           = appStatus.PinStateFromRILInt(p.readInt());
-            appStatus.pin2           = appStatus.PinStateFromRILInt(p.readInt());
-            cardStatus.mApplications[i] = appStatus;
-        }
-
-        // pretty hack way to do it. but keeps it out of CM telephony stack
-        if (forceCdmaLteNetworkType)
-            setPreferredNetworkType(8, null);
-
-        return cardStatus;
     }
 
     @Override

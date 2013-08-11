@@ -44,6 +44,7 @@ TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
 # RIL
+BOARD_USES_LEGACY_RIL := true
 BOARD_USE_NEW_LIBRIL_HTC := true
 BOARD_RIL_CLASS := "../../../device/htc/vigor/ril/"
 
@@ -88,5 +89,7 @@ BOARD_VOLD_MAX_PARTITIONS := 38
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
 
 # Recovery
+TARGET_RECOVERY_FSTAB := device/htc/vigor/rootdir/etc/fstab.vigor
+RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
