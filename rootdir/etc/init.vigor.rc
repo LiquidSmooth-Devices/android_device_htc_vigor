@@ -179,7 +179,7 @@ on boot
 
     # flashlight
     chown system camera /sys/class/leds/flashlight/brightness
-    chmod 0660          /sys/class/leds/flashlight/brightness
+    chmod 0666          /sys/class/leds/flashlight/brightness
 
     # for optical sensors
     chown system system /sys/class/optical_sensors/lightsensor/ls_adc
