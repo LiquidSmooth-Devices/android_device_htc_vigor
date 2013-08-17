@@ -81,8 +81,6 @@ on init
     chown system system /dev/mpuirq
     chown system system /dev/timerirq
 
-    symlink /mnt/sdcard/ext_sd /sdcard2
-
     # Vibrator
     chown system system /sys/class/timed_output/vibrator/voltage_level
 
