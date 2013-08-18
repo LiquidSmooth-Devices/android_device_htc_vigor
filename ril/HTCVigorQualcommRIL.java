@@ -58,6 +58,19 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
     }
 
     @Override
+    protected Object
+    responseIccCardStatus(Parcel p) {
+        // force CDMA + LTE network mode
+        boolean forceCdmaLte = needsOldRilFeature("forceCdmaLteNetworkType");
+
+        if (forceCdmaLte) {
+            setPreferredNetworkType(NETWORK_MODE_LTE_CDMA_EVDO, null);
+        }
+
+        return super.responseIccCardStatus(p);
+    }
+
+    @Override
     public void setPreferredNetworkType(int networkType , Message response) {
         /**
           * If not using a USIM, ignore LTE mode and go to 3G
