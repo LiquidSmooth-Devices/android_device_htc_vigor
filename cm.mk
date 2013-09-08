@@ -1,9 +1,10 @@
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 $(call inherit-product, vendor/cm/config/cdma.mk)
-
-# Bootanimation
-TARGET_BOOTANIMATION_NAME := vertical-720x1280
 $(call inherit-product, device/htc/vigor/vigor.mk)
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 720
 
 # Device naming
 PRODUCT_NAME := cm_vigor
