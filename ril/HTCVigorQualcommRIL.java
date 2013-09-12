@@ -24,6 +24,8 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Parcel;
+import android.os.SystemProperties;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.telephony.CellInfo;
 import android.telephony.SignalStrength;
@@ -54,6 +56,7 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
     private static final int RIL_UNSOL_RESPONSE_VOICE_RADIO_TECH_CHANGED = 21004;
     private static final int RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED = 21005;
     private static final int RIL_UNSOL_RESPONSE_DATA_NETWORK_STATE_CHANGED = 21007;
+    private static final int RIL_UNSOL_RESPONSE_DATA_NETWORK_STATE_CHANGED_M7 = 5757;
 
     public HTCVigorQualcommRIL(Context context, int networkMode, int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription);
@@ -179,6 +182,8 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
             case RIL_UNSOL_RESPONSE_VOICE_RADIO_TECH_CHANGED: ret = responseVoid(p); break;
             case RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED: ret = responseVoid(p); break;
             case RIL_UNSOL_RESPONSE_DATA_NETWORK_STATE_CHANGED: ret = responseVoid(p); break;
+            case RIL_UNSOL_RESPONSE_DATA_NETWORK_STATE_CHANGED_M7: ret = responseVoid(p); break;
+            case RIL_UNSOL_RIL_CONNECTED: ret = responseInts(p); break;
 
             default:
                 // Rewind the Parcel
@@ -194,10 +199,22 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
             case RIL_UNSOL_CDMA_3G_INDICATOR:
             case RIL_UNSOL_CDMA_ENHANCE_ROAMING_INDICATOR:
             case RIL_UNSOL_CDMA_NETWORK_BASE_PLUSCODE_DIAL:
-            case RIL_UNSOL_RESPONSE_PHONE_MODE_CHANGE:
-            case RIL_UNSOL_RESPONSE_VOICE_RADIO_TECH_CHANGED:
             case RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED:
-            case RIL_UNSOL_RESPONSE_DATA_NETWORK_STATE_CHANGED:
+            case RIL_UNSOL_RESPONSE_PHONE_MODE_CHANGE: {
+                /* Unhandled HTC responses */
+                break;
+            }
+            case RIL_UNSOL_RESPONSE_VOICE_RADIO_TECH_CHANGED: {
+                if (RILJ_LOGD) unsljLogRet(response, ret);
+
+                if (mVoiceRadioTechChangedRegistrants != null) {
+                    mVoiceRadioTechChangedRegistrants.notifyRegistrants(
+                                        new AsyncResult(null, ret, null));
+                }
+                break;
+            }
+            case RIL_UNSOL_RESPONSE_DATA_NETWORK_STATE_CHANGED_M7:
+            case RIL_UNSOL_RESPONSE_DATA_NETWORK_STATE_CHANGED: {
                 if (RILJ_LOGD) unsljLogRet(response, ret);
 
                 if (mExitEmergencyCallbackModeRegistrants != null) {
@@ -205,7 +222,25 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
                                         new AsyncResult (null, null, null));
                 }
                 break;
+            }
+            case RIL_UNSOL_RIL_CONNECTED: {
+                if (RILJ_LOGD) unsljLogRet(response, ret);
+
+                // Initial conditions
+                if (SystemProperties.get("ril.socket.reset").equals("1")) {
+                    setRadioPower(false, null);
+                }
+                // Trigger socket reset if RIL connect is called again
+                SystemProperties.set("ril.socket.reset", "1");
+                setPreferredNetworkType(mPreferredNetworkType, null);
+                int cdmaSubscription = Settings.Global.getInt(mContext.getContentResolver(), Settings.Global.CDMA_SUBSCRIPTION_MODE, -1);
+                if(cdmaSubscription != -1) {
+                    setCdmaSubscriptionSource(cdmaSubscription, null);
+                }
+                setCellInfoListRate(Integer.MAX_VALUE, null);
+                notifyRegistrantsRilConnectionChanged(((int[])ret)[0]);
+                break;
+            }
         }
     }
-
 }
