@@ -18,6 +18,4 @@
 <resources>
     <!-- HTC Camcorder Mode -->
     <bool name="needsHTCCamMode">true</bool>
-    <!-- Disable touch snapshot in video recording -->
-    <bool name="disableTouchSnapshot">true</bool>
 </resources>
