@@ -47,8 +47,8 @@
 #include <utils/Log.h>
 
 // comment this out to enable logging
-// #undef ALOGD
-// #define ALOGD(...) {}
+// #undef LOGD
+// #define LOGD(...) {}
 
 typedef struct
 {
