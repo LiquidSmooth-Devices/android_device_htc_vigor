@@ -6,9 +6,9 @@ ro.sf.lcd_density = 320
 
 # RIL properties
 # cm props
-ril.subscription.types=RUIM,NV
+ril.subscription.types=RUIM
 ro.telephony.ril_class=HTCQualcommRIL
-ro.telephony.ril.v3=signalstrength
+#ro.telephony.ril.v3=signalstrength
 mobiledata.interfaces = rmnet0,rmnet_sdio0
 ro.telephony.default_network = 8
 telephony.lteOnCdmaDevice = 1
