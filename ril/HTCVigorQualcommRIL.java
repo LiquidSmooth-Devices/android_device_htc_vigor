@@ -46,7 +46,7 @@ import java.util.ArrayList;
  *
  * {@hide}
  */
-public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsInterface {
+public class HTCVigorQualcommRIL extends RIL implements CommandsInterface {
 
     private static final int RIL_UNSOL_ENTER_LPM = 1523;
     private static final int RIL_UNSOL_CDMA_3G_INDICATOR = 3009;
@@ -107,20 +107,6 @@ public class HTCVigorQualcommRIL extends QualcommSharedRIL implements CommandsIn
         }
 
         return super.responseIccCardStatus(p);
-    }
-
-    @Override
-    public void setPreferredNetworkType(int networkType , Message response) {
-        /**
-          * If not using a USIM, ignore LTE mode and go to 3G
-          */
-        if (!mUSIM && networkType == RILConstants.NETWORK_MODE_LTE_GSM_WCDMA &&
-                 mSetPreferredNetworkType >= RILConstants.NETWORK_MODE_WCDMA_PREF) {
-            networkType = RILConstants.NETWORK_MODE_WCDMA_PREF;
-        }
-        mSetPreferredNetworkType = networkType;
-
-        super.setPreferredNetworkType(networkType, response);
     }
 
     @Override
