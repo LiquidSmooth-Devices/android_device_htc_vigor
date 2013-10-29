@@ -20,9 +20,6 @@ DEVICE_PACKAGE_OVERLAYS := device/htc/vigor/overlay
 # The gps config appropriate for this device
 PRODUCT_COPY_FILES := device/htc/vigor/gps/gps.conf:system/etc/gps.conf
 
-# CDMA/GSM Combined APNs list. Keep this as it works!
-# PRODUCT_COPY_FILES += device/htc/vigor/prebuilt/apns-conf.xml:system/etc/apns-conf.xml
-
 # Recovery
 PRODUCT_PACKAGES += \
     init.recovery.vigor.rc \
