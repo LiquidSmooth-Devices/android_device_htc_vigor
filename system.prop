@@ -6,7 +6,7 @@ ro.sf.lcd_density=320
 
 # RIL properties
 # cm props
-ril.subscription.types=RUIM
+ril.subscription.types=NV,RUIM
 ro.telephony.ril_class=HTCVigorQualcommRIL
 mobiledata.interfaces = rmnet0,rmnet_sdio0
 ro.telephony.default_network = 8
@@ -31,6 +31,9 @@ ro.baseband.arch = svlte2a
 
 # For QC perf binary hooks
 ro.vendor.extension_library = /system/lib/libqc-opt.so
+
+# Set CDMA SUBSCRIPTION SOURCE to RUIM in Database for this device
+ro.telephony.default_cdma_sub=0
 
 # cm qcom configs
 com.qc.hardware = true
