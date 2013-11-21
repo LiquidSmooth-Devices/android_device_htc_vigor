@@ -6,8 +6,6 @@ ro.sf.lcd_density=320
 
 # RIL properties
 # cm props
-ril.subscription.types=NV,RUIM
-ro.telephony.ril_class=HTCVigorQualcommRIL
 mobiledata.interfaces = rmnet0,rmnet_sdio0
 ro.telephony.default_network = 8
 telephony.lteOnCdmaDevice = 1
@@ -28,6 +26,7 @@ persist.rild.ril.ltedr = 0
 persist.rild.ril.ltedrtable=max_retries=infinite,10000
 DEVICE_PROVISIONED = 1
 ro.baseband.arch = svlte2a
+ro.ril.svdo=true
 
 # For QC perf binary hooks
 ro.vendor.extension_library = /system/lib/libqc-opt.so
