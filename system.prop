@@ -132,9 +132,6 @@ persist.data_netmgrd_nint = 16
 # For Pyramid China NEL
 ro.ril.enable.prl.recognition = 1
 
-#RAM
-ro.config.low_ram = true
-
 #SIM
 ro.htc.device.slot1 = RUIM
 persist.radio.no_wait_for_card = 1
