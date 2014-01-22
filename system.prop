@@ -153,9 +153,6 @@ persist.thermal.monitor = true
 # vigor must enable this value to enable 9kramdump
 ro.modem.load.release_key = true
 
-# UMS
-persist.sys.usb.config = mass_storage,adb
-ro.vold.umsdirtyratio=50
 
 # Scrolling Tweaks
 windowsmgr.max_events_per_sec=180
