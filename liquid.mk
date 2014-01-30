@@ -1,4 +1,3 @@
-$(call inherit-product, vendor/liquid/config/common_cdma.mk)
 $(call inherit-product, device/htc/vigor/vigor.mk)
 
 # Boot animation
