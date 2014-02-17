@@ -33,6 +33,10 @@ ro.ril.svdo=true
 # For QC perf binary hooks
 ro.vendor.extension_library = /system/lib/libqc-opt.so
 
+# update 1x signal strength after 2s
+persist.radio.snapshot_enabled=1
+persist.radio.snapshot_timer=2
+
 # Set CDMA SUBSCRIPTION SOURCE to RUIM in Database for this device
 ro.telephony.default_cdma_sub=0
 
