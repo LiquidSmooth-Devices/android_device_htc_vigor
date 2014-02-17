@@ -37,12 +37,6 @@
   },
   {
     "remote": "gh",
-    "repository": "IAmTheOneTheyCallNeo/android_hardware_qcom_gps",
-    "target_path": "hardware/qcom/gps",
-    "revision": "tachyon-2.0"
-  },
-  {
-    "remote": "gh",
     "repository": "vigor/device_htc_vigor",
     "target_path": "device/htc/vigor",
     "revision": "cm-11.0"
