@@ -13,9 +13,9 @@
   },
   {
     "remote": "gh",
-    "repository": "vigor/android_device_htc_msm8660-common",
+    "repository": "Bunchies101/android_device_htc_msm8660-common",
     "target_path": "device/htc/msm8660-common",
-    "revision": "cm-11.0_hybrid"
+    "revision": "4.2.2"
   },
   {
     "remote": "gh",
@@ -37,8 +37,14 @@
   },
   {
     "remote": "gh",
-    "repository": "vigor/device_htc_vigor",
+    "repository": "Bunchies101/device_htc_vigor",
     "target_path": "device/htc/vigor",
-    "revision": "cm-11.0"
+    "revision": "4.2.2"
+	},
+	{
+	"remote": "gh",
+    "repository": "Bunchies101/android_packages_apps_Browser",
+    "target_path": "packages/apps/Browser",
+    "revision": "kitkat"
   }
 ]
