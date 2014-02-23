@@ -40,9 +40,9 @@
     "repository": "Bunchies101/device_htc_vigor",
     "target_path": "device/htc/vigor",
     "revision": "4.2.2"
-	},
-	{
-	"remote": "gh",
+  },
+  {
+    "remote": "gh",
     "repository": "Bunchies101/android_packages_apps_Browser",
     "target_path": "packages/apps/Browser",
     "revision": "kitkat"
