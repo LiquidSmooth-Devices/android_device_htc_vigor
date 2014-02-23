@@ -39,7 +39,7 @@
     "remote": "gh",
     "repository": "Bunchies101/device_htc_vigor",
     "target_path": "device/htc/vigor",
-    "revision": "4.2.2"
+    "revision": "4.4.2"
   },
   {
     "remote": "gh",
