@@ -22,7 +22,7 @@
 <resources>
 
     <!-- Default color for notification LED is green. -->
-    <color name="config_defaultNotificationColor">#ff00ff00</color>
+    <color name="config_defaultNotificationColor">00FF00</color>
 
     <!-- Default LED on time for notification LED in milliseconds. -->
     <integer name="config_defaultNotificationLedOn">1000</integer>
