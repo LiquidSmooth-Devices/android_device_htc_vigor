@@ -1,4 +1,5 @@
 $(call inherit-product, device/htc/vigor/vigor.mk)
+$(call inherit-product, vendor/liquid/config/common_phone.mk)
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280
@@ -17,4 +18,3 @@ PRODUCT_GMS_CLIENTID_BASE := android-verizon
 
 # Release name
 PRODUCT_RELEASE_NAME := Vigor
--include vendor/liquid/config/common_phone.mk
