@@ -1,15 +1,15 @@
 [
   {
     "remote": "gh",
-    "repository": "vigor/android_hardware_qcom_media-legacy",
+    "repository": "LiquidSmooth/android_hardware_qcom_media-legacy",
     "target_path": "hardware/qcom/media-legacy",
-    "revision": "cm-11.0_hybrid"
+    "revision": "kitkat"
   },
   {
     "remote": "gh",
-    "repository": "vigor/android_hardware_qcom_display-legacy",
+    "repository": "LiquidSmooth/android_hardware_qcom_display-legacy",
     "target_path": "hardware/qcom/display-legacy",
-    "revision": "cm-11.0_hybrid"
+    "revision": "kitkat"
   },
   {
     "remote": "gh",
