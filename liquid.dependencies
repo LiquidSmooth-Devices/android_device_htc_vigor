@@ -15,13 +15,13 @@
     "remote": "gh",
     "repository": "Bunchies101/android_device_htc_msm8660-common",
     "target_path": "device/htc/msm8660-common",
-    "revision": "master"
+    "revision": "cm-11.0_hybrid"
   },
   {
     "remote": "gh",
     "repository": "Bunchies101/vigor_aosp_kernel",
     "target_path": "kernel/htc/vigor-3.0",
-    "revision": "cm-11.0_hybrid"
+    "revision": "master"
   },
   {
     "remote": "gh",
