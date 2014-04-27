@@ -15,7 +15,7 @@
     "remote": "gh",
     "repository": "Bunchies101/android_device_htc_msm8660-common",
     "target_path": "device/htc/msm8660-common",
-    "revision": "cm-11.0_hybrid"
+    "revision": "master"
   },
   {
     "remote": "gh",
