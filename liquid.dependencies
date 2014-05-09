@@ -1,7 +1,7 @@
 [
   {
     "remote": "gh",
-    "repository": "vigor/android_hardware_qcom_media-legacy",
+    "repository": "Bunchies101/android_hardware_qcom_media-legacy",
     "target_path": "hardware/qcom/media-legacy",
     "revision": "cm-11.0_hybrid"
   },
