@@ -38,7 +38,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL3 androidboot.hardware=vigor no_console_su
 TARGET_KERNEL_VERSION := 3.0
 TARGET_KERNEL_CONFIG := vigor_aosp_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/vigor-$(TARGET_KERNEL_VERSION)
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := sm-arm-eabi-4.7
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := sm-arm-eabi-4.8
 LINARO_GCC_VERSION := 4.8
 
 # Boot animation
