@@ -1,5 +1,10 @@
 [
   {
+    "repository": "CyanogenMod/android_device_qcom_common",
+    "target_path": "device/qcom/common",
+    "branch": "cm-11.0"
+  },
+  {
     "remote": "gh",
     "repository": "Bunchies101/android_hardware_qcom_media-legacy",
     "target_path": "hardware/qcom/media-legacy",
