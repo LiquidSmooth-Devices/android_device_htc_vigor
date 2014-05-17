@@ -4,8 +4,11 @@
 
 ro.sf.lcd_density=320
 
+# Test
+ro.product.name = liquid_vigor
+
 # RIL properties
-# cm props
+# Liquid props
 ril.subscription.types=RUIM,NV
 ro.telephony.ril_class=HTCVigorQualcommRIL
 mobiledata.interfaces = rmnet0,rmnet_sdio0
@@ -40,7 +43,7 @@ persist.radio.snapshot_timer=2
 # Set CDMA SUBSCRIPTION SOURCE to RUIM in Database for this device
 ro.telephony.default_cdma_sub=0
 
-# cm qcom configs
+# Liquid qcom configs
 com.qc.hardware = true
 com.qc.hdmi_out = true
 ro.hdmi.enable = true
@@ -158,7 +161,6 @@ persist.thermal.monitor = true
 # Set this value to force load 8k modem in release key
 # vigor must enable this value to enable 9kramdump
 ro.modem.load.release_key = true
-
 
 # Scrolling Tweaks
 windowsmgr.max_events_per_sec=180
