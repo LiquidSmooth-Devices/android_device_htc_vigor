@@ -47,8 +47,7 @@ BOARD_USE_NEW_LIBRIL_HTC := true
 BOARD_RIL_CLASS := "../../../device/htc/vigor/ril/"
 BOARD_RIL_NO_CELLINFOLIST:=true
 
-# Boot animation
-TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+# Boot animation color format
 TARGET_BOOTANIMATION_USE_RGB565 := true
 
 # HTCLOG
