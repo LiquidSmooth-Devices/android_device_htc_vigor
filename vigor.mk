@@ -117,9 +117,6 @@ PRODUCT_COPY_FILES += \
 # Graphics
 PRODUCT_COPY_FILES += device/htc/vigor/configs/adreno_config.txt:system/etc/adreno_config.txt
 
-# QC thermald config
-PRODUCT_COPY_FILES += device/htc/vigor/prebuilt/thermald.conf:system/etc/thermald.conf
-
 # Wifi
 PRODUCT_COPY_FILES += \
     device/htc/vigor/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
