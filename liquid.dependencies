@@ -19,7 +19,7 @@
   },
   {
     "remote": "gh",
-    "repository": "Bunchies101/vigor_aosp_kernel",
+    "repository": "Bunchies101/Kitten_Kernel",
     "target_path": "kernel/htc/vigor-3.0",
     "revision": "master"
   },
