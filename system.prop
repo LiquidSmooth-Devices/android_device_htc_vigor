@@ -45,6 +45,9 @@ com.qc.hardware = true
 com.qc.hdmi_out = true
 ro.hdmi.enable = true
 
+# GPU producer to CPU consumer not supported
+ro.bq.gpu_to_cpu_unsupported=1
+
 # qcom cpu governor service
 dev.pm.dyn_samplingrate = 1
 
