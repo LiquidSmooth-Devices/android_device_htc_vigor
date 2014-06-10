@@ -47,6 +47,9 @@ BOARD_USE_NEW_LIBRIL_HTC := true
 BOARD_RIL_CLASS := "../../../device/htc/vigor/ril/"
 BOARD_RIL_NO_CELLINFOLIST:=true
 
+# External apps on SD
+TARGET_EXTERNAL_APPS = sdcard1
+
 # Boot animation color format
 TARGET_BOOTANIMATION_USE_RGB565 := true
 TARGET_BOOTANIMATION_PRELOAD := true
@@ -68,7 +71,7 @@ WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/bcmdhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA := "/system/vendor/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_P2P := "/system/vendor/firmware/fw_bcmdhd_p2p.bin"
 WIFI_DRIVER_FW_PATH_AP := "/system/vendor/firmware/fw_bcmdhd_apsta.bin"
-BOARD_WLAN_DEVICE_REV            := bcm4330_b2
+BOARD_WLAN_DEVICE_REV := bcm4330_b2
 BOARD_LEGACY_NL80211_STA_EVENTS := false
 
 # Filesystem
