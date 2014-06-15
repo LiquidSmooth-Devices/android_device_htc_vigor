@@ -20,9 +20,6 @@ DEVICE_PACKAGE_OVERLAYS := device/htc/vigor/overlay
 # The gps config appropriate for this device
 PRODUCT_COPY_FILES := device/htc/vigor/gps/gps.conf:system/etc/gps.conf
 
-# The SPN for extra MMS support
-PRODUCT_COPY_FILES := device/htc/vigor/prebuilt/spn/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
-
 # Recovery
 PRODUCT_PACKAGES += \
     init.recovery.vigor.rc \
