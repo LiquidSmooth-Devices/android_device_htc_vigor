@@ -19,9 +19,9 @@
   },
   {
     "remote": "gh",
-    "repository": "Bunchies101/Kitten_Kernel",
+    "repository": "vigor/vigor_aosp_kernel",
     "target_path": "kernel/htc/vigor-3.0",
-    "revision": "master"
+    "revision": "cm-11.0_hybrid"
   },
   {
     "remote": "gh",
