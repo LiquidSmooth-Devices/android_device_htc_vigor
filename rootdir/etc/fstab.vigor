@@ -17,4 +17,4 @@
 /devices/platform/msm_sdcc.3/mmc_host/mmc2	auto	auto	defaults		voldmanaged=sdcard1:auto,noemulatedsd
 
 # USB OTG
-/dev/block/platform/msm_hsusb_host.0/sda1	auto	vfat	defaults		voldmanaged=usbdisk:auto
+/devices/platform/msm_hsusb_host	auto	auto	defaults		voldmanaged=usbdisk:auto
