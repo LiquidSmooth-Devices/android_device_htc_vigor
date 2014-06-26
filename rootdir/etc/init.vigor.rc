@@ -329,23 +329,12 @@ service qmuxd /system/bin/qmuxd
     user radio
     group radio audio bluetooth gps
 
-service qmuxd /system/bin/qmuxd
-    class late_start
-    user radio
-    group radio audio bluetooth gps
-    disabled
-
 on property:radio.netmgr_port_close_done=true
     start qmuxd
 
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p25 /dev/block/mmcblk0p26 /dev/block/mmcblk0p19 NULL /dev/block/mmcblk0p27 /dev/block/mmcblk0p28 /dev/block/mmcblk0p20
     class core
     user root
-
-service qcamerasvr /system/bin/mm-qcamera-daemon
-    class main
-    user system
-    group system camera inet
 
 on property:init.svc.bootanim=stopped
     start qcom-post-boot
