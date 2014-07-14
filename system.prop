@@ -115,16 +115,8 @@ ro.ril.def.agps.mode = 6
 
 # audio
 lpa.decode = false
-lpa.use-stagefright = true
-media.stagefright.enable-player = true
-media.stagefright.enable-http = true
-media.stagefright.enable-fma2dp = false
-media.stagefright.enable-aac = true
-media.stagefright.enable-qcp = true
-media.stagefright.enable-scan = true
+lpa.use-stagefright = false
 mmp.enable.3g2=true
-use.non-omx.mp3.decoder = true
-use.non-omx.aac.decode = true
 media.a1026.nsForVoiceRec = 0
 media.a1026.enableA1026 = 0
 htc.audio.alt.enable = 0
