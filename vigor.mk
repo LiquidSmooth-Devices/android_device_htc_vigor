@@ -23,8 +23,10 @@ PRODUCT_COPY_FILES := device/htc/vigor/gps/gps.conf:system/etc/gps.conf
 # Recovery
 PRODUCT_PACKAGES += \
     init.recovery.vigor.rc \
+    twrp.fstab \
     choice_fn \
     detect_key \
+    htcbatt \
     offmode_charging \
     power_test
 

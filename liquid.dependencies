@@ -7,9 +7,9 @@
   },
   {
     "remote": "gh",
-    "repository": "vigor/android_hardware_qcom_display-legacy",
+    "repository": "Bunchies101/android_hardware_qcom_display-legacy",
     "target_path": "hardware/qcom/display-legacy",
-    "revision": "cm-11.0_hybrid"
+    "revision": "kitkat"
   },
   {
     "remote": "gh",
