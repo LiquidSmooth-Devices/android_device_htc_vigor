@@ -18,3 +18,6 @@
 
 # USB OTG
 /devices/platform/msm_hsusb_host	auto	auto	defaults		voldmanaged=usbdisk:auto
+
+# Swap to zRam
+/dev/block/zram0 none swap defaults zramsize=536870912

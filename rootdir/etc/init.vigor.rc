@@ -90,6 +90,7 @@ on init
 on emmc-fs
     # mount all mmc partitions
     mount_all /fstab.vigor
+    swapon_all /fstab.vigor
 
     setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
 

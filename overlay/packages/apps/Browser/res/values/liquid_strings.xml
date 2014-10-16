@@ -49,5 +49,9 @@
     <!-- Toast to inform the user of the number of cookies deleted and remaining [CHAR LIMIT=50] -->
     <string name="cookies_deleted_info">cookies deleted</string>
     <string name="cookies_remain_info">cookies remain</string>
+    <!-- User agent label -->
+    <string name="pref_content_ua">User agent</string>
+    <!-- User agent summary -->
+    <string name="pref_content_ua_summary">Choose a user agent</string>
 
 </resources>
