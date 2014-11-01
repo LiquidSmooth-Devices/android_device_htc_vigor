@@ -28,6 +28,7 @@ PRODUCT_PACKAGES += \
     detect_key \
     htcbatt \
     offmode_charging \
+    chargeled \
     power_test
 
 # Ramdisk
